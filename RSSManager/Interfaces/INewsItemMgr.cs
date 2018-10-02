@@ -1,10 +1,13 @@
-﻿using RSSManager.ViewModel;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using RSSManager.ViewModel;
+using RSSModel.Model;
 
 namespace RSSManager
 {
     public interface INewsItemMgr
     {
-        IList<NewsItemModel> GetAllNewsItems();        
+        IList<NewsItemModel> GetAll();
+        void Save(IEnumerable<NewsItemModel> model);
+        NewsItemModel GetById(int Id);
     }
 }

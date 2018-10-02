@@ -1,9 +1,12 @@
 ﻿using RSSModel.Model;
-using RSSRepository.Repositories.Interfaces;
+using System.Collections.Generic;
 
-namespace NewsRepository.Repositories.Interfaces
+namespace RSSRepository.Repositories.Interfaces
 {
     public interface INewsItemRepo : IBaseRepo<NewsItem>
     {
+        IList<NewsItem> GetAllNewsItemsByFeedId(int Id);
     }
 }
+
+    

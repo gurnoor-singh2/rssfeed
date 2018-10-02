@@ -22,3 +22,41 @@ select,
 textarea {
     max-width: 280px;
 }
+
+form {
+    width: 25% !important;
+    margin-left: 11px !important;
+    display: flex !important;
+    margin-bottom: 48px !important;
+}
+
+.ButtonLink a {
+    color:#fff!important;
+}
+
+.linkDec {
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.linkDec a img {
+    max-height: 250px !important;
+    max-width: 350px !important;
+    height: -webkit-fill-available !important;
+    width: -webkit-fill-available !important;
+    margin-left: 0px !important;
+    margin-bottom: 15px;
+}
+
+    .linkDec a img[src=""] {
+        background: url('Image/noImage.jpg') no-repeat;
+    }
+
+    h3 a {
+    color: #4E2A84!important;
+    font-weight:500;
+}
+.tableIndex{max-width:50%!important}
+
+

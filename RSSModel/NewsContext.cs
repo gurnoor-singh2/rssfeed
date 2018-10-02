@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using RSSModel.Model;
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Data.Entity.Core.Objects;
-using System.Data.Linq;
-using RSSModel.Model;
 using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace RSSModel
@@ -23,6 +15,7 @@ namespace RSSModel
         }
 
         public DbSet<NewsItem> NewsItems { get; set; }
+        public DbSet<FeedName> FeedNames { get; set; }
        
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

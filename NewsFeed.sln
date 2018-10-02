@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSSManager", "RSSManager\RSSManager.csproj", "{621112DD-89E4-4FD7-8AFD-C5E94786A61E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSSWeb", "RSSWeb\RSSWeb.csproj", "{7427F5B3-CD24-4D07-A0B8-7C5AE377A6F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSSModel", "RSSModel\RSSModel.csproj", "{B9D7474A-CDDA-4D02-9D7E-CD24A29B6358}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSSManager", "RSSManager\RSSManager.csproj", "{621112DD-89E4-4FD7-8AFD-C5E94786A61E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSSRepository", "RSSRepository\RSSRepository.csproj", "{A2ED0F89-49FE-4E98-893C-8E82C22E21C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSSWeb", "RSSWeb\RSSWeb.csproj", "{7427F5B3-CD24-4D07-A0B8-7C5AE377A6F4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSSModel", "RSSModel\RSSModel.csproj", "{B9D7474A-CDDA-4D02-9D7E-CD24A29B6358}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,27 +17,27 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{621112DD-89E4-4FD7-8AFD-C5E94786A61E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{621112DD-89E4-4FD7-8AFD-C5E94786A61E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{621112DD-89E4-4FD7-8AFD-C5E94786A61E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{621112DD-89E4-4FD7-8AFD-C5E94786A61E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B9D7474A-CDDA-4D02-9D7E-CD24A29B6358}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B9D7474A-CDDA-4D02-9D7E-CD24A29B6358}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B9D7474A-CDDA-4D02-9D7E-CD24A29B6358}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B9D7474A-CDDA-4D02-9D7E-CD24A29B6358}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A2ED0F89-49FE-4E98-893C-8E82C22E21C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A2ED0F89-49FE-4E98-893C-8E82C22E21C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A2ED0F89-49FE-4E98-893C-8E82C22E21C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A2ED0F89-49FE-4E98-893C-8E82C22E21C0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7427F5B3-CD24-4D07-A0B8-7C5AE377A6F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7427F5B3-CD24-4D07-A0B8-7C5AE377A6F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7427F5B3-CD24-4D07-A0B8-7C5AE377A6F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7427F5B3-CD24-4D07-A0B8-7C5AE377A6F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{621112DD-89E4-4FD7-8AFD-C5E94786A61E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{621112DD-89E4-4FD7-8AFD-C5E94786A61E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{621112DD-89E4-4FD7-8AFD-C5E94786A61E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{621112DD-89E4-4FD7-8AFD-C5E94786A61E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2ED0F89-49FE-4E98-893C-8E82C22E21C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2ED0F89-49FE-4E98-893C-8E82C22E21C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2ED0F89-49FE-4E98-893C-8E82C22E21C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2ED0F89-49FE-4E98-893C-8E82C22E21C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9D7474A-CDDA-4D02-9D7E-CD24A29B6358}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9D7474A-CDDA-4D02-9D7E-CD24A29B6358}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9D7474A-CDDA-4D02-9D7E-CD24A29B6358}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9D7474A-CDDA-4D02-9D7E-CD24A29B6358}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {5C274153-96AB-477A-A123-24CED689DB85}
+		SolutionGuid = {606EA1CF-262D-4A10-A4E2-1B93F5D5BC07}
 	EndGlobalSection
 EndGlobal

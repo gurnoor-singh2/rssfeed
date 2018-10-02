@@ -1,17 +1,17 @@
 ﻿namespace RSSWeb.DependancyResolution
 {
+    using NewsRepository.Repositories.Impl;
+    using NewsRepository.Repositories.Interfaces;
+    using RSSManager;
+    using RSSManager.Impl;
+    using RSSManager.Interfaces;
+    using RSSManager.Mapping;
+    using RSSModel;
+    using RSSRepository.Repositories.Impl;
+    using RSSRepository.Repositories.Interfaces;
     using StructureMap.Configuration.DSL;
     using StructureMap.Graph;
     using System.Data.Entity;
-    using RSSManager.Mapping;
-    using RSSManager.Impl;
-    using RSSManager;
- 
-    using RSSModel;
-    using RSSRepository.Repositories.Interfaces;
-    using NewsRepository.Repositories.Impl;
-    using NewsRepository.Repositories.Interfaces;
-    using RSSRepository.Repositories.Impl;
 
     public class DefaultRegistry : Registry
     {
@@ -33,6 +33,8 @@
             For(typeof(IBaseRepo<>)).Use(typeof(BaseRepo<>));
             For<INewsItemRepo>().Use<NewsItemRepo>();
             For<INewsItemMgr>().Use<NewsItemMgr>();
+            For<IFeedNameRepo>().Use<FeedNameRepo>();
+            For<IFeedNameMgr>().Use<FeedNameMgr>();
         }
         #endregion
     }

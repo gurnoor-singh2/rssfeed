@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using RSSManager.ViewModel;
 using RSSModel.Model;
-using System.Collections.Generic;
 
 namespace RSSManager.Mapping
 {
@@ -13,7 +12,11 @@ namespace RSSManager.Mapping
         {
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<IList<NewsItem>, List<NewsItemModel>>();
+                cfg.CreateMap<NewsItem, NewsItemModel>();
+                cfg.CreateMap<NewsItemModel, NewsItem>();
+
+                cfg.CreateMap<FeedName, FeedNameModel>();
+                cfg.CreateMap<FeedNameModel, FeedName>();
             });
 
             _modelMapper = config.CreateMapper();

@@ -71,31 +71,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201809180504537_newsItem.cs" />
-    <Compile Include="Migrations\201809180504537_newsItem.Designer.cs">
-      <DependentUpon>201809180504537_newsItem.cs</DependentUpon>
+    <Compile Include="Migrations\201809270601562_NewsiTEMS.cs" />
+    <Compile Include="Migrations\201809270601562_NewsiTEMS.Designer.cs">
+      <DependentUpon>201809270601562_NewsiTEMS.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201809210752474_nesw.cs" />
-    <Compile Include="Migrations\201809210752474_nesw.Designer.cs">
-      <DependentUpon>201809210752474_nesw.cs</DependentUpon>
+    <Compile Include="Migrations\201809270724205_newsFeed.cs" />
+    <Compile Include="Migrations\201809270724205_newsFeed.Designer.cs">
+      <DependentUpon>201809270724205_newsFeed.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Base.cs" />
+    <Compile Include="Model\FeedName.cs" />
     <Compile Include="NewsContext.cs" />
     <Compile Include="Model\NewsItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201809180504537_newsItem.resx">
-      <DependentUpon>201809180504537_newsItem.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809210752474_nesw.resx">
-      <DependentUpon>201809210752474_nesw.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201809270601562_NewsiTEMS.resx">
+      <DependentUpon>201809270601562_NewsiTEMS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809270724205_newsFeed.resx">
+      <DependentUpon>201809270724205_newsFeed.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

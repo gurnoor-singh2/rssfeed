@@ -1,4 +1,4 @@
-namespace RSSModel.Migrations
+namespace NewsModel.Migrations
 {
     using System;
     using System.Data.Entity;
