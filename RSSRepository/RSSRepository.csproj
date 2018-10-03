@@ -81,10 +81,10 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Impl\BaseRepo.cs" />
-    <Compile Include="Repositories\Impl\FeedNameRepo.cs" />
+    <Compile Include="Repositories\Impl\FeedRepo.cs" />
     <Compile Include="Repositories\Impl\NewsItemRepo.cs" />
     <Compile Include="Repositories\Interfaces\IBaseRepo.cs" />
-    <Compile Include="Repositories\Interfaces\IFeedNameRepo.cs" />
+    <Compile Include="Repositories\Interfaces\IFeedRepo.cs" />
     <Compile Include="Repositories\Interfaces\INewsItemRepo.cs" />
   </ItemGroup>
   <ItemGroup>

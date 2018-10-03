@@ -11,9 +11,9 @@ namespace RSSManager.Impl
     public class NewsItemMgr : INewsItemMgr
     {
         private readonly INewsItemRepo _newsItemRepo;
-        private readonly IFeedNameRepo _feedNameRepo;
+        private readonly IFeedRepo _feedNameRepo;
         private readonly IDefaultMapping _modelMapper;
-        public NewsItemMgr(IDefaultMapping modelMapper, INewsItemRepo newsItemRepo, IFeedNameRepo feedNameRepo)
+        public NewsItemMgr(IDefaultMapping modelMapper, INewsItemRepo newsItemRepo, IFeedRepo feedNameRepo)
         {
             _modelMapper = modelMapper;
             _newsItemRepo = newsItemRepo;

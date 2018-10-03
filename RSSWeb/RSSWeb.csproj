@@ -255,9 +255,13 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\NewsItem.mdf" />
+    <None Include="App_Data\NewsItem.mdf_dep" />
+    <Content Include="App_Data\NewsItemDB.mdf" />
+    <Content Include="App_Data\NewsItemDB_log.ldf">
+      <DependentUpon>NewsItemDB.mdf</DependentUpon>
+    </Content>
     <Content Include="App_Data\NewsItem_log.ldf">
-      <DependentUpon>NewsItem.mdf</DependentUpon>
+      <DependentUpon>NewsItem.mdf_dep</DependentUpon>
     </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />

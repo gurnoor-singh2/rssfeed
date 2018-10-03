@@ -33,8 +33,8 @@
             For(typeof(IBaseRepo<>)).Use(typeof(BaseRepo<>));
             For<INewsItemRepo>().Use<NewsItemRepo>();
             For<INewsItemMgr>().Use<NewsItemMgr>();
-            For<IFeedNameRepo>().Use<FeedNameRepo>();
-            For<IFeedNameMgr>().Use<FeedNameMgr>();
+            For<IFeedRepo>().Use<FeedRepo>();
+            For<IFeedMgr>().Use<FeedMgr>();
         }
         #endregion
     }

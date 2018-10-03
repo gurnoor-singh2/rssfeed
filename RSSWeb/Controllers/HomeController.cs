@@ -15,69 +15,35 @@ namespace RSSWeb.Controllers
     public class HomeController : Controller
     {
         private readonly INewsItemMgr _newsFeedMgr;
-        private readonly IFeedNameMgr _feedNameMgr;
-        public HomeController(INewsItemMgr newsFeedMgr, IFeedNameMgr feedNameMgr)
-
+        private readonly IFeedMgr _feedMgr;
+        public HomeController(INewsItemMgr newsFeedMgr, IFeedMgr feedMgr)
         {
             _newsFeedMgr = newsFeedMgr;
-            _feedNameMgr = feedNameMgr;
+            _feedMgr = feedMgr;
         }
 
         public ActionResult Index(int? page)
         {
             ViewBag.CurrentPage = page;
-            var feedName = _feedNameMgr.GetAll();
+            var feedName = _feedMgr.GetAll();
             int pageSize = 5;
             int pageNumber = (page ?? 1);
             return View(feedName.ToPagedList(pageNumber, pageSize));
         }
 
         [HttpPost]
-        public ActionResult Index(string RSSURL, int? page)
+        public ActionResult Index(string rssUrl, int? page)
         {
             try
             {
-                WebClient wclient = new WebClient();
-                string RSSData = wclient.DownloadString(RSSURL);
-                XDocument xml = XDocument.Parse(RSSData);
-
-                FeedNameModel Feeds = new FeedNameModel
-                {
-                    Name = RSSURL,
-                    Url = RSSURL
-                };
-                _feedNameMgr.Save(Feeds);
-
-                var FeedNameData = _feedNameMgr.GetAll();
-                var UrlId = (from feedId in FeedNameData orderby feedId.Id descending select feedId).First();
-                var itemId = UrlId.Id;
-                
-                var RSSFeedData = (from xmlData in xml.Descendants("item")
-                                   select new NewsItemModel
-                                   {
-                                       Url_Id = itemId,
-                                       Title = ((string)xmlData.Element("title")),
-                                       Link = ((string)xmlData.Element("link")),
-                                       Description = ((string)xmlData.Element("description")),
-                                       PubDate = ((string)xmlData.Element("pubDate"))
-                                   });
-                _newsFeedMgr.Save(RSSFeedData);
-                ViewBag.CurrentPage = page;
-                var feedName = _feedNameMgr.GetAll();
-                int pageSize = 5;
-                int pageNumber = (page ?? 1);
-                return View(feedName.ToPagedList(pageNumber, pageSize));
+                var rssFeedData = _feedMgr.ParseFeedUrl(rssUrl);
+                _newsFeedMgr.Save(rssFeedData);                
             }
             catch
             {
-                ViewBag.Message = "No Rss Feed Data Found";
-                ViewBag.CurrentPage = page;
-                var feedName = _feedNameMgr.GetAll();
-                int pageSize = 5;
-                int pageNumber = (page ?? 1);
-                return View(feedName.ToPagedList(pageNumber, pageSize));
+                ViewBag.Message = "No Rss Feed Data Found";                
             }
-            
+            return RedirectToAction("Index");
         }
 
 
@@ -93,7 +59,7 @@ namespace RSSWeb.Controllers
         public ActionResult GetAllNewsItemsByFeedId(int Id, int? page)
         {
             ViewBag.CurrentPage = page;
-            var items = _feedNameMgr.GetAllNewsItemsByFeedId(Id);
+            var items = _feedMgr.GetAllNewsItemsByFeedId(Id);
             int pageSize = 9;
             int pageNumber = (page ?? 1);
             return View("GetAllNewsItemsByFeedId", items.ToPagedList(pageNumber, pageSize));
@@ -103,15 +69,15 @@ namespace RSSWeb.Controllers
         [HttpGet]
         public ActionResult EditFeedName(int Id)
         {
-            FeedNameModel model = new FeedNameModel();
-            model = _feedNameMgr.GetById(Id);
+            FeedModel model = new FeedModel();
+            model = _feedMgr.GetById(Id);
             return View("EditFeedName", model);
         }
 
         [HttpPost]
-        public ActionResult EditFeedName(FeedNameModel model)
+        public ActionResult EditFeedName(FeedModel model)
         {
-            _feedNameMgr.Update(model);
+            _feedMgr.Update(model);
             return RedirectToAction("Index");
         }
     }
