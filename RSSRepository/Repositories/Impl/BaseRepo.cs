@@ -31,6 +31,11 @@ namespace RSSRepository.Repositories.Impl
             return _dbContext.Set<T>().ToList();
         }
 
+        public IEnumerable<T> GetAll()
+        {
+            return _dbContext.Set<T>().ToList();
+        }
+
         public DbSet<T> GetDbSet()
         {
             return _dbContext.Set<T>();

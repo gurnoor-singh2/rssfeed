@@ -14,6 +14,8 @@ namespace RSSRepository.Repositories.Interfaces
 
         IList<T> FetchAll();
 
+        IEnumerable<T> GetAll();
+
         IList<T> FetchAll(Expression<Func<T, bool>> query);
 
         T Get(int id);

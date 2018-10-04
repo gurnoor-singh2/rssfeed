@@ -16,7 +16,7 @@ namespace RSSManager.Interfaces
         void Update(FeedModel feeds);
         void Delete(int Id);
         FeedModel GetById(int Id);
-        IList<NewsItem> GetAllNewsItemsByFeedId(int id);
-        IEnumerable<NewsItemModel> ParseFeedUrl(string url);
+        IList<FeedItem> GetAllNewsItemsByFeedId(int id);
+        IEnumerable<FeedItemModel> ParseFeedUrl(string url, bool isValid);
     }
 }

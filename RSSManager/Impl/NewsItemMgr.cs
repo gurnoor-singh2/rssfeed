@@ -20,27 +20,26 @@ namespace RSSManager.Impl
             _feedNameRepo = feedNameRepo;
         }
 
-        public IList<NewsItemModel> GetAll()
+        public IList<FeedItemModel> GetAll()
         {
-             IList<NewsItemModel> newsItems = new List<NewsItemModel>();
+            IList<FeedItemModel> newsItems = new List<FeedItemModel>();
             var items = _newsItemRepo.FetchAll();
             foreach (var item in items)
             {
-                newsItems.Add(_modelMapper.ModelMapper.Map<NewsItemModel>(item));
+                newsItems.Add(_modelMapper.ModelMapper.Map<FeedItemModel>(item));
             }
             return newsItems;
         }
 
-        public void Save(IEnumerable<NewsItemModel> model)
+        public void Save(IEnumerable<FeedItemModel> model)
         {
-            foreach(var item in model) 
-
-            _newsItemRepo.Save(this._modelMapper.ModelMapper.Map<NewsItem>(item));
+            foreach (var item in model)
+                _newsItemRepo.Save(this._modelMapper.ModelMapper.Map<FeedItem>(item));
         }
 
-        public NewsItemModel GetById(int Id)
+        public FeedItemModel GetById(int Id)
         {
-            return this._modelMapper.ModelMapper.Map<NewsItemModel>(_newsItemRepo.Get(Id));
+            return this._modelMapper.ModelMapper.Map<FeedItemModel>(_newsItemRepo.Get(Id));
         }
     }
 }

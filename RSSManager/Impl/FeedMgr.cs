@@ -21,7 +21,7 @@ namespace RSSManager.Impl
             _modelMapper = modelMapper;
             _feedNameRepo = feedNameRepo;
             _newsItemRepo = newsItemRepo;
-        }        
+        }
 
         public IList<FeedModel> GetAll()
         {
@@ -34,7 +34,7 @@ namespace RSSManager.Impl
             return feedItems;
         }
 
-        public IList<NewsItem> GetAllNewsItemsByFeedId(int id)
+        public IList<FeedItem> GetAllNewsItemsByFeedId(int id)
         {
             var NewsItems = _newsItemRepo.GetAllNewsItemsByFeedId(id);
             return NewsItems;
@@ -47,7 +47,7 @@ namespace RSSManager.Impl
 
         public void Save(FeedModel model)
         {
-            _feedNameRepo.IsExist(x => x.Id == model.Id);
+            //_feedNameRepo.IsExist(x => x.Id == model..Id);
             var saveRssUrl = this._modelMapper.ModelMapper.Map<Feed>(model);
             _feedNameRepo.Save(saveRssUrl);
         }
@@ -62,23 +62,29 @@ namespace RSSManager.Impl
             _feedNameRepo.Delete(Id);
         }
 
-        public IEnumerable<NewsItemModel> ParseFeedUrl(string rssUrl)
+        public IEnumerable<FeedItemModel> ParseFeedUrl(string rssUrl, bool isValid)
         {
             WebClient wclient = new WebClient();
             string rssData = wclient.DownloadString(rssUrl);
             XDocument xml = XDocument.Parse(rssData);
-
-            FeedModel feed = new FeedModel
+            if (isValid)
             {
-                Name = rssUrl,
-                Url = rssUrl
-            };
-            this.Save(feed);            
+                FeedModel feed = new FeedModel
+                {
+                    Name = rssUrl,
+                    Url = rssUrl
+                };
+                this.Save(feed);
+            }
+
+            var FeedNameData = _feedNameRepo.FetchAll();
+            var UrlId = (from feedId in FeedNameData orderby feedId.Id descending select feedId).First();
+            var itemId = UrlId.Id;
 
             var rssFeedData = (from xmlData in xml.Descendants("item")
-                               select new NewsItemModel
+                               select new FeedItemModel
                                {
-                                   Url_Id = feed.Id,
+                                   Url_Id = itemId,
                                    Title = ((string)xmlData.Element("title")),
                                    Link = ((string)xmlData.Element("link")),
                                    Description = ((string)xmlData.Element("description")),

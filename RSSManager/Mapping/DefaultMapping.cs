@@ -12,8 +12,8 @@ namespace RSSManager.Mapping
         {
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<NewsItem, NewsItemModel>();
-                cfg.CreateMap<NewsItemModel, NewsItem>();
+                cfg.CreateMap<FeedItem, FeedItemModel>();
+                cfg.CreateMap<FeedItemModel, FeedItem>();
 
                 cfg.CreateMap<Feed, FeedModel>();
                 cfg.CreateMap<FeedModel, Feed>();

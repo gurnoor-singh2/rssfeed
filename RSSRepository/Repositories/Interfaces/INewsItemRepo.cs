@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace RSSRepository.Repositories.Interfaces
 {
-    public interface INewsItemRepo : IBaseRepo<NewsItem>
+    public interface INewsItemRepo : IBaseRepo<FeedItem>
     {
-        IList<NewsItem> GetAllNewsItemsByFeedId(int Id);
+        IList<FeedItem> GetAllNewsItemsByFeedId(int Id);
     }
 }
 

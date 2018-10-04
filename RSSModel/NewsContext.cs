@@ -14,7 +14,7 @@ namespace RSSModel
             }
         }
 
-        public DbSet<NewsItem> NewsItems { get; set; }
+        public DbSet<FeedItem> NewsItems { get; set; }
         public DbSet<Feed> FeedNames { get; set; }
        
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
