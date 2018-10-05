@@ -63,7 +63,7 @@ namespace RSSWeb.Controllers
         public ActionResult GetAllFeeds(int? page)
         {
             ViewBag.CurrentPage = page;
-            var newsfeed = _newsFeedMgr.GetAll();
+            var newsfeed = _newsFeedMgr.GetAll().OrderByDescending(x => x.Id);
             int pageSize = 9;
             int pageNumber = (page ?? 1);
             return View(newsfeed.ToPagedList(pageNumber, pageSize));
@@ -72,7 +72,7 @@ namespace RSSWeb.Controllers
         public ActionResult GetAllNewsItemsByFeedId(int Id, int? page)
         {
             ViewBag.CurrentPage = page;
-            var items = _feedMgr.GetAllNewsItemsByFeedId(Id);
+            var items = _feedMgr.GetAllNewsItemsByFeedId(Id).OrderByDescending(x => x.Id);
             int pageSize = 9;
             int pageNumber = (page ?? 1);
             return View("GetAllNewsItemsByFeedId", items.ToPagedList(pageNumber, pageSize));
@@ -101,27 +101,22 @@ namespace RSSWeb.Controllers
             {
                 var currentDatetime = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("Central Standard Time"));
                 var time = currentDatetime.ToString("hh:mm tt");
-
                 try
                 {
                     var feedMgr = IoC.Initialize().GetInstance<IFeedMgr>();
-                    // var feeds = feedMgr.GetAll();
-                    using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required))
+                    using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required, new System.TimeSpan(0, 30, 0)))
                     {
                         using (NewsContext _context = new NewsContext())
                         {
-
-
+                            Transaction rootTr = Transaction.Current;
                             var itemFeeds = _context.FeedNames;
                             var rssFeeds = _context.NewsItems;
                             foreach (var itemUrl in itemFeeds)
                             {
-                                Transaction rootTr = Transaction.Current;
+                                DependentTransaction dt = rootTr.DependentClone(DependentCloneOption.RollbackIfNotComplete);
                                 var rssData = feedMgr.ParseFeedUrl(itemUrl.Url, false);
                                 foreach (var rssItem in rssData.ToList())
                                 {
-                                    DependentTransaction dt = rootTr.DependentClone(DependentCloneOption.RollbackIfNotComplete);
-
                                     try
                                     {
                                         var count = rssFeeds.Where(x => x.Title == rssItem.Title).Count();
@@ -138,22 +133,18 @@ namespace RSSWeb.Controllers
                                                 _context.NewsItems.Add(newFeedItem);
                                             }
                                             _context.SaveChanges();
-                                            Thread.Sleep(500);
-
-                                            dt.Complete();
                                         }
-                                       
                                     }
                                     catch (Exception ex)
                                     {
                                         throw ex;
                                     }
                                 }
-                                scope.Complete();
+                                dt.Complete();
                             }
                             _context.Dispose();
-
                         }
+                        scope.Complete();
                     }
                     timernew.Start();
                 }

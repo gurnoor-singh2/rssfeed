@@ -11,6 +11,7 @@ namespace RSSModel
             if (Database.Connection.State == System.Data.ConnectionState.Closed)
             {
                 Database.Connection.Open();
+                Database.CommandTimeout = 120;
             }
         }
 

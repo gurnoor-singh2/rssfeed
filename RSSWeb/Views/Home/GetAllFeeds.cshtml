@@ -21,10 +21,10 @@
                     @Html.Raw(cssDiv)
                     i++;
                     <div class="col-md-4 col-sm-4 col-lg-4 linkDec">
-                        <h3 style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;"><a href="@item.Link">@Html.Raw(item.Title)</a></h3><br />
-                        <p class="linkDec">@Html.Raw(item.Description)</p><br />
+                        @*<span class="like-btn"></span>*@
+                        <h3 style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;min-height: 52px;"><a href="@item.Link">@Html.Raw(item.Title)</a></h3>
+                        <p class="linkDec">@Html.Raw(item.Description)</p>
                         <p>@Html.Raw(item.PubDate)</p>
-                        <br />
                     </div>
                     var cssDivClose = i % 3 == 0 ? "</div>" : "";
                     @Html.Raw(cssDivClose)
@@ -41,3 +41,11 @@
         Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
     </div>
 }
+
+
+@*<script type="text/javascript">
+    $('.like-btn').on('click', function() {
+         $(this).toggleClass('is-active');
+    });
+</script>*@
+
