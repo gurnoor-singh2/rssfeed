@@ -7,5 +7,6 @@
         public string Link { get; set; }
         public string PubDate { get; set; }
         public int Url_Id { get; set; }
+        public string FeedXML { get; set; }
     }   
 }

@@ -7,7 +7,7 @@ namespace RSSManager
     public interface INewsItemMgr
     {
         IList<FeedItemModel> GetAll();
-        void Save(IEnumerable<FeedItemModel> model);
+        void Save(FeedItemModel model);
         FeedItemModel GetById(int Id);
     }
 }

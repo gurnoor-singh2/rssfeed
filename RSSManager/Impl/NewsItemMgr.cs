@@ -31,10 +31,16 @@ namespace RSSManager.Impl
             return newsItems;
         }
 
-        public void Save(IEnumerable<FeedItemModel> model)
+        public void Save(FeedItemModel model)
         {
-            foreach (var item in model)
-                _newsItemRepo.Save(this._modelMapper.ModelMapper.Map<FeedItem>(item));
+            var feed = _newsItemRepo.GetSingleResult(x => x.Url_Id == model.Url_Id);
+            if (feed == null)
+                _newsItemRepo.Save(this._modelMapper.ModelMapper.Map<FeedItem>(model));
+            else
+            {
+                feed.FeedXML = model.FeedXML;
+                _newsItemRepo.Update(feed);
+            }
         }
 
         public FeedItemModel GetById(int Id)

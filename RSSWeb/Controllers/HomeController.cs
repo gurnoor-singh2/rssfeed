@@ -34,8 +34,7 @@ namespace RSSWeb.Controllers
             var feedName = _feedMgr.GetAll();
             int pageSize = 5;
             int pageNumber = (page ?? 1);
-
-
+            
             System.Timers.Timer timerAutoUpdateFeed = new System.Timers.Timer();
             timerAutoUpdateFeed.Elapsed += async (sender, e) => await AutoUpdateFeed(timerAutoUpdateFeed);
             timerAutoUpdateFeed.Start();
@@ -80,15 +79,15 @@ namespace RSSWeb.Controllers
 
 
         [HttpGet]
-        public ActionResult EditFeedName(int Id)
+        public ActionResult EditFeed(int Id)
         {
             FeedModel model = new FeedModel();
             model = _feedMgr.GetById(Id);
-            return View("EditFeedName", model);
+            return View("EditFeed", model);
         }
 
         [HttpPost]
-        public ActionResult EditFeedName(FeedModel model)
+        public ActionResult EditFeed(FeedModel model)
         {
             _feedMgr.Update(model);
             return RedirectToAction("Index");
@@ -115,31 +114,7 @@ namespace RSSWeb.Controllers
                             {
                                 DependentTransaction dt = rootTr.DependentClone(DependentCloneOption.RollbackIfNotComplete);
                                 var rssData = feedMgr.ParseFeedUrl(itemUrl.Url, false);
-                                foreach (var rssItem in rssData.ToList())
-                                {
-                                    try
-                                    {
-                                        var count = rssFeeds.Where(x => x.Title == rssItem.Title).Count();
-                                        var newFeedItem = new FeedItem();
-                                        if (rssItem != null)
-                                        {
-                                            if (count < 1)
-                                            {
-                                                newFeedItem.Description = rssItem.Description;
-                                                newFeedItem.PubDate = rssItem.PubDate;
-                                                newFeedItem.Link = rssItem.Link;
-                                                newFeedItem.Title = rssItem.Title;
-                                                newFeedItem.Url_Id = rssItem.Url_Id;
-                                                _context.NewsItems.Add(newFeedItem);
-                                            }
-                                            _context.SaveChanges();
-                                        }
-                                    }
-                                    catch (Exception ex)
-                                    {
-                                        throw ex;
-                                    }
-                                }
+                                _newsFeedMgr.Save(rssData);
                                 dt.Complete();
                             }
                             _context.Dispose();
